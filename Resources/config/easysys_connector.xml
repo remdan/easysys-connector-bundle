@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="remdan_easysys_connector.class">EasysysConnector\EasysysConnector</parameter>
+        <parameter key="remdan_easysys_connector.http_adapter.class">%remdan_easysys_connector.http_adapter.curl.class%</parameter>
+        <parameter key="remdan_easysys_connector.auth_adapter.class">EasysysConnector\HttpAdapter\Curl\CurlHttpAdapter</parameter>
+
+
+        <parameter key="remdan_easysys_connector.auth_adapter.token.class">EasysysConnector\AuthAdapter\Token\TokenAuthAdapter</parameter>
+
+        <parameter key="remdan_easysys_connector.http_adapter.curl.class">EasysysConnector\HttpAdapter\Curl\CurlHttpAdapter</parameter>
+        <parameter key="remdan_easysys_connector.http_adapter.guzzle.class">EasysysConnector\HttpAdapter\Guzzle\GuzzleHttpAdapter</parameter>
+
+        <parameter key="remdan_easysys_connector.resource_manager.contact.class">EasysysConnector\Manager\Resource\Contact\ResourceContactManager</parameter>
+        <parameter key="remdan_easysys_connector.resource_manager.kb_invoice.class">EasysysConnector\Manager\Resource\Kb\ResourceInvoiceManager</parameter>
+        <parameter key="remdan_easysys_connector.resource_manager.kb_offer.class">EasysysConnector\Manager\Resource\Kb\ResourceOfferManager</parameter>
+        <parameter key="remdan_easysys_connector.resource_manager.kb_order.class">EasysysConnector\Manager\Resource\Kb\ResourceOrderManager</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="remdan.easysysconnector" class="%remdan_easysys_connector.class%">
+            <argument type="service" id="remdan.easysysconnector.http_adapter" />
+            <argument type="service" id="remdan.easysysconnector.auth_adapter" />
+            <argument />
+        </service>
+
+        <service id="remdan.easysysconnector.http_adapter.curl" class="%remdan_easysys_connector.http_adapter.curl.class%">
+        </service>
+
+        <service id="remdan.easysysconnector.auth_adapter.token" class="%remdan_easysys_connector.auth_adapter.token.class%">
+            <argument>%remdan_easysys_connector.auth.token.company%</argument>
+            <argument>%remdan_easysys_connector.auth.token.user_id%</argument>
+            <argument>%remdan_easysys_connector.auth.token.public_key%</argument>
+            <argument>%remdan_easysys_connector.auth.token.signature_key%</argument>
+        </service>
+
+    </services>
+
+</container>

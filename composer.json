@@ -1,0 +1,25 @@
+{
+    "name": "remdan/easysys-connector-bundle",
+    "type": "symfony-bundle",
+    "description": "EasysysConnectorBundle for Symfony2",
+    "keywords": [
+        "Easysys",
+        "Symfony",
+        "bundle"
+    ],
+    "homepage": "http://easysysconnector.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Remdan",
+            "email": "info@remdan.co"
+        }
+    ],
+    "require": {
+        "remdan/easysys-connector": "1.0.*"
+    },
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {"Remdan\\EasysysConnectorBundle\\": ""}
+    }
+}
